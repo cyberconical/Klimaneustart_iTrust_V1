@@ -161,4 +161,4 @@ High level weekly summary (example — replace with real git-derived entries):
 ---
 
 ## License
-Add your license file (e.g., MIT) if applicable.
+For this phase we have chosen the MIT License. We want to build and grow with the community!
