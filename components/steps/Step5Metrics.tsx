@@ -207,61 +207,6 @@ const Step5Metrics: React.FC<AppProps> = ({
         </Grid>
       </Grid>
 
-      <Paper variant="outlined" sx={{ p: 1, borderRadius: 2 }}>
-        <FormGroup row sx={{ justifyContent: "space-around" }}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={data.participantType === "single"}
-                onChange={() => handleParticipantTypeChange("single")}
-              />
-            }
-            label={t("metrics.single")}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={data.participantType === "family"}
-                onChange={() => handleParticipantTypeChange("family")}
-              />
-            }
-            label={t("metrics.family")}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={data.participantType === "couple"}
-                onChange={() => handleParticipantTypeChange("couple")}
-              />
-            }
-            label={t("metrics.couple")}
-          />
-        </FormGroup>
-      </Paper>
-
-      <Paper
-        variant="outlined"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 2,
-          borderRadius: 2,
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1.5,
-            color: "text.secondary",
-          }}
-        >
-          <Typography fontWeight="500">{t("metrics.location")}</Typography>
-        </Box>
-        <Chip label={t("common.soon")} variant="outlined" />
-      </Paper>
-
       <Box
         sx={{
           display: "flex",

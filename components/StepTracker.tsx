@@ -4,6 +4,7 @@ import { Step } from '../types';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { COLORS } from '../constants';
+import { useLanguage } from "./LanguageContext";
 
 interface StepTrackerProps {
     currentStep: number;
@@ -15,6 +16,7 @@ interface StepTrackerProps {
 const StepTracker: React.FC<StepTrackerProps> = ({ currentStep, steps, onBack, onHelp }) => {
     const theme = useTheme();
     const totalSteps = steps.length - 1; // Welcome step is not counted
+    const { t } = useLanguage();
 
     return (
         <Box>
@@ -59,7 +61,7 @@ const StepTracker: React.FC<StepTrackerProps> = ({ currentStep, steps, onBack, o
                 }
             />
             <Typography variant="body2" align="center" color="text.secondary" sx={{mt: -1}}>
-                Step {currentStep} of {totalSteps}: {steps[currentStep]?.title}
+                {t("dialogue.stepLabel", {current: currentStep, total: totalSteps})}: {steps[currentStep]?.title}
             </Typography>
         </Box>
     );

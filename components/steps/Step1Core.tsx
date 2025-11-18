@@ -89,12 +89,6 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
           }}
         />
 
-        <AudioPaper elevation={0}>
-          <Typography color="text.secondary" fontWeight="500">
-            {t("dialogue.recordAudio")}
-          </Typography>
-          <Chip label={t("common.soon")} disabled />
-        </AudioPaper>
       </Box>
 
       <Footer>

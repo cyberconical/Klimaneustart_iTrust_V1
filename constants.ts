@@ -24,17 +24,17 @@ import DevicesIcon from "@mui/icons-material/Devices";
 import { red } from "@mui/material/colors";
 
 export const STEPS: Step[] = [
-  { id: StepId.Welcome, title: "Welcome" },
-  { id: StepId.Core, title: "Core Details" },
-  { id: StepId.District, title: "Select District" },
-  { id: StepId.Topics, title: "Besprochen..." },
-  { id: StepId.Initiatives, title: "Initiatives" },
-  { id: StepId.Consent, title: "Data Consent" },
-  { id: StepId.Reflection, title: "Observer Reflection" },
-  { id: StepId.Metrics, title: "Observer Reflection Metrics" },
+  { id: StepId.Welcome, title: "Willkommen" },
+  { id: StepId.Core, title: "Notizen" },
+  { id: StepId.District, title: "Bezirk auswählen" },
+  { id: StepId.Topics, title: "Kategorien" },
+  { id: StepId.Initiatives, title: "Initiativen" },
+  { id: StepId.Consent, title: "In Kontakt bleiben" },
+  { id: StepId.Reflection, title: "Reflexion" },
+  { id: StepId.Metrics, title: "Gesprächspartner:innen" },
   { id: StepId.reflectionDistrict, title: "Select Reflection Districts" },
-  { id: StepId.Summary, title: "Summary" },
-  { id: StepId.ThankYou, title: "Thank you." },
+  { id: StepId.Summary, title: "Zusammenfassung" },
+  { id: StepId.ThankYou, title: "Danke." },
 ];
 
 export const INITIAL_CONVERSATION_DATA: ConversationData = {

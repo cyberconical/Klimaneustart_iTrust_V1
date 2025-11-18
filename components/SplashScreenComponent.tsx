@@ -59,7 +59,7 @@ const SplashScreenComponent: React.FC<SplashScreenProps> = ({ onFinish }) => {
         <Fade in={textVisible} timeout={1000}>
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h4" component="h1" fontWeight="bold" color={COLORS.red2}>
-              Sag doch mal, Berlin
+              Sag doch mal, Berlin!
             </Typography>
           </Box>
         </Fade>
@@ -78,7 +78,7 @@ const SplashScreenComponent: React.FC<SplashScreenProps> = ({ onFinish }) => {
         <Fade in={textVisible} timeout={1000}>
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h6" color={COLORS.green2}>
-              Hören. Reden. Mitgestalten
+              Zuhören. Reden. Mitgestalten
             </Typography>
           </Box>
         </Fade>

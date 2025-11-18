@@ -378,10 +378,10 @@ const Step2Topics: React.FC<AppProps> = ({
         {!isSidebarMode && (
           <StyledPaper elevation={0}>
             <Typography variant="h4" component="h1" gutterBottom>
-              {t("dialogue.headerTitle")}
+              {t("dialogue.categoriesTitle")}
             </Typography>
             <Typography variant="h6">
-              {t("dialogue.headerSubtitle2")}
+              {t("dialogue.categoriesSubtitle")}
             </Typography>
           </StyledPaper>
         )}

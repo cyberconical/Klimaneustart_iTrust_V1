@@ -4,12 +4,12 @@ export default {
             "stepLabel": "Schritt {{current}} von {{total}}",
             "headerTitle": "Besprochen...",
             "headerSubtitle": "Dokumentiere die Essenz deines Dialogs",
-            "headerSubtitle2": "Wähle alle Themen, die im Dialog\nerwähnt wurden",
+            "categoriesTitle": "Themenauswahl",
+            "categoriesSubtitle": "Wähle alle Themen, die im Dialog\nerwähnt wurden",
             "initiativeMatching": "Selbst aktiv werden",
-            "selectInterests": "Entdecke konkrete Möglichkeiten, etwas zu verändem",
+            "selectInterests": "Entdecke konkrete Möglichkeiten, etwas zu verändern",
             "notesLabel": "Notizen",
             "notesPlaceholder": "Was ist das Interesse des\nDialogpartners\nWas macht für dich eine lebenswerte\nstadt aus?",
-            "recordAudio": "Nimm Audio auf",
             "skip": "überspringen",
             "back": "Zurück",
             "next": "Weiter",
@@ -17,21 +17,23 @@ export default {
             "newDialogue": "Neuer Dialog"
         },
         "welcome": {
-            "title": "Sag doch mal, Berlin",
+            "title": "Sag doch mal, Berlin!",
             "subtitle": "Bürger:innen Dialog zu gesellschaftsrelevanten Themen",
             "startButton": "Starte den Dialog",
             "caredBy": "cared for by Generation iTrust",
-            "tagline": "Hören, Reden, Mitgestalten"
+            "tagline": "Zuhören, Reden, Mitgestalten"
         },
         "login": {
             "welcomeBack": "Willkommen zurück",
             "pleaseSignIn": "Bitte melde dich an, um fortzufahren.",
-            "username": "Username",
-            "password": "Password",
+            "username": "Benutzername",
+            "password": "Passwort",
             "loginButton": "Login"
         },
         "districts": {
-            "selectDistrict": "Bezirk auswählen"
+            "selectDistrict": "Bezirk auswählen",
+            "residenceTitle": "Wohnort",
+            "residenceSubTitle": "Wo wohnt dein:e Gesprächspartner:in?",
         },
         "topics": {
             "housingBuildingTransition": "Bauwende",
@@ -246,8 +248,6 @@ export default {
             "whatElseShowed": "Was hat dir der Dialog noch gezeigt",
             "shareThoughts": "Teile deine Gedanken zu diesem Gespräch – was hat dich überrascht oder was möchtest du dir merken?",
             "resonanceEssence": "Resonanz, Essenz, Takeaway…",
-            "audioRecording": "… oder mach eine Audioaufnahme",
-            "connectContexts": "mit größeren Zusammenhängen zu verknüpfen"
         },
         "metrics": {
             "observerReflectionsMetrics": "Beobachter-Reflexionsmetriken",
@@ -262,7 +262,9 @@ export default {
         },
         "summary": {
             "summary": "Zusammenfassung",
-            "ourQRCode": "Unser QR Code"
+            "ourQRCode": "Unser QR Code",
+            "note": "Notiz",
+            "notProvided": "Keine Angaben"
         },
         "analytics": {
             "analyticsDashboard": "Analyse-Dashboard",
@@ -319,12 +321,12 @@ export default {
             "stepLabel": "Step {{current}} of {{total}}",
             "headerTitle": "Discussed",
             "headerSubtitle": "Document the essence of your dialogue",
-            "headerSubtitle2": "Select all topics that were\nmentioned in the dialogue",
+            "categoriesTitle": "Category selection",
+            "categoriesSubtitle": "Select all topics that were mentioned in the dialogue",
             "initiativeMatching": "Become active yourself",
             "selectInterests": "Discover concrete possibilities to change something",
             "notesLabel": "Notes",
             "notesPlaceholder": "What is the dialogue partner's\ninterest?\nWhat makes a city worth living in\nfor you?",
-            "recordAudio": "Record audio",
             "skip": "Skip",
             "back": "Back",
             "next": "Next",
@@ -332,7 +334,7 @@ export default {
             "newDialogue": "New Dialogue"
         },
         "welcome": {
-            "title": "Yo, speak up, Berlin",
+            "title": "Yo, speak up, Berlin!",
             "subtitle": "Citizens' dialogue on socially relevant topics",
             "startButton": "Start the dialogue",
             "caredBy": "cared for by Generation iTrust",
@@ -346,7 +348,9 @@ export default {
             "loginButton": "Login"
         },
         "districts": {
-            "selectDistrict": "Select District"
+            "selectDistrict": "Select District",
+            "residenceTitle": "Residence",
+            "residenceSubTitle": "Where does your dialogue partner live?",
         },
         "topics": {
             "housingBuildingTransition": "Building Transition",
@@ -561,8 +565,6 @@ export default {
             "whatElseShowed": "What else did the dialogue show you",
             "shareThoughts": "Share your thoughts about this conversation – what surprised you or what would you like to remember?",
             "resonanceEssence": "Resonance, essence, takeaway…",
-            "audioRecording": "… or make an audio recording",
-            "connectContexts": "to connect with larger contexts"
         },
         "metrics": {
             "observerReflectionsMetrics": "Observer Reflections Metrics",
@@ -577,7 +579,9 @@ export default {
         },
         "summary": {
             "summary": "Summary",
-            "ourQRCode": "Our QR Code"
+            "ourQRCode": "Our QR Code",
+            "note": "Note",
+            "notProvided": "Not provided"
         },
         "analytics": {
             "analyticsDashboard": "Analytics Dashboard",
