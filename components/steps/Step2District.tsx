@@ -88,9 +88,9 @@ const Step2District: React.FC<AppProps> = ({
     <Container>
       <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
-          {t("dialogue.headerTitle")}
+          {t("districts.residenceTitle")}
         </Typography>
-        <Typography variant="h6">{t("dialogue.headerSubtitle")}</Typography>
+        <Typography variant="h6">{t("districts.residenceSubTitle")}</Typography>
       </StyledPaper>
 
       <Grid container spacing={2}>

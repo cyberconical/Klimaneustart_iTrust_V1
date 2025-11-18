@@ -16,7 +16,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import EditIcon from "@mui/icons-material/Edit";
 import { AppProps, StepId } from "../../types";
-import { INITIATIVES, STEPS } from "../../constants";
+import {INITIATIVES, STEPS, TOPIC_DEFINITIONS} from "../../constants";
 import { saveConversation } from "../../services/conversationService";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -77,7 +77,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
   const { t } = useLanguage();
   const displayValue = value || (
     <Typography component="span" fontStyle="italic" color="text.secondary">
-      Not provided
+        {t("summary.notProvided")}
     </Typography>
   );
 
@@ -156,7 +156,7 @@ const Step6Summary: React.FC<AppProps> = ({
           return (
             <Box key={topicId}>
               <Typography variant="subtitle1" fontWeight="bold">
-                {topicId}
+                  {t(TOPIC_DEFINITIONS.filter(value => value.id === topicId)[0]?.nameKey) || topicId}
               </Typography>
               {details.customNote && (
                 <Typography variant="body2">{details.customNote}</Typography>
@@ -165,15 +165,19 @@ const Step6Summary: React.FC<AppProps> = ({
                 .filter(([key]) => key !== "customNote")
                 .map(([subGroupId, subGroupDetails]: [string, any]) => (
                   <Box key={subGroupId} sx={{ ml: 2, mt: 1 }}>
-                    <Typography variant="subtitle2">{subGroupId}</Typography>
                     {subGroupDetails.selectedOptions?.length > 0 && (
                       <Typography variant="body2">
-                        Selected: {subGroupDetails.selectedOptions.join(", ")}
+                          {(subGroupDetails.selectedOptions || []).map((optionId: string) => {
+                              const topic = TOPIC_DEFINITIONS.find(value => value.id === topicId);
+                              const subGroup = topic?.subGroups?.find((sg: any) => sg.id === subGroupId);
+                              const option = subGroup?.options?.find((opt: any) => opt.id === optionId);
+                              return option ? t(option.nameKey) : optionId;
+                          }).join(", ") || topicId}
                       </Typography>
                     )}
                     {subGroupDetails.customNote && (
                       <Typography variant="body2" color="text.secondary">
-                        Note: {subGroupDetails.customNote}
+                          {t("summary.note")}: {subGroupDetails.customNote}
                       </Typography>
                     )}
                   </Box>
@@ -199,7 +203,7 @@ const Step6Summary: React.FC<AppProps> = ({
             onEdit={() => handleEdit(StepId.District)}
           />
           <SummaryItem
-            label="Topic Details"
+            label={t("dialogue.categoriesTitle")}
             value={renderTopicDetails()}
             editable
             onEdit={() => handleEdit(StepId.Topics)}
@@ -244,10 +248,6 @@ const Step6Summary: React.FC<AppProps> = ({
             value={`${data.numPeople} people, ${data.duration} minutes`}
             editable
             onEdit={() => handleEdit(StepId.Metrics)}
-          />
-          <SummaryItem
-            label={t("metrics.location")}
-            value={data.location || "Not provided"}
           />
         </List>
       </Paper>

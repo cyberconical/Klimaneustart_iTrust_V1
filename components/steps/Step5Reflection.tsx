@@ -99,40 +99,6 @@ const Step5Reflection: React.FC<AppProps> = ({
             mb: 3,
           }}
         />
-
-        <Paper
-          variant="outlined"
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            p: 2,
-            borderRadius: 2,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.5,
-              color: "text.secondary",
-            }}
-          >
-            <MicIcon />
-            <Typography fontWeight="500">
-              {t("reflection.audioRecording")}
-            </Typography>
-          </Box>
-          <Chip label={t("common.soon")} variant="outlined" />
-        </Paper>
-
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mt: 2, fontStyle: "italic" }}
-        >
-          {t("reflection.connectContexts")}
-        </Typography>
       </Box>
 
       <Box
