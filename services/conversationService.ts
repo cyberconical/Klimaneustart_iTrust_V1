@@ -25,12 +25,11 @@
 // };
 
 import { ConversationData } from "../types";
-
-// Prefer absolute backend URL only if provided; otherwise use same-origin '/api' path
-const API_BASE_URL: string = (import.meta as any).env?.VITE_API_BASE_URL || "";
+import axios from "../components/authentication/axios";
+import { useAuthStore } from "../components/authentication/authStore.tsx";
 
 export const saveConversation = async (
-  data: ConversationData & {
+    conversationData: ConversationData & {
     uuid?: string;
     sendCopy?: boolean;
     firstName?: string;
@@ -39,28 +38,31 @@ export const saveConversation = async (
   }
 ): Promise<{ success: boolean; id: string }> => {
   try {
-    console.log("Send save conversation request to: ", API_BASE_URL);
-    const url = API_BASE_URL
-      ? `${API_BASE_URL}/api/v1/conversations`
-      : `/api/v1/conversations`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    conversationData = {...conversationData, 'user': useAuthStore.getState().username || "unknown"};
 
-    if (!response.ok) {
+    const response = await axios.post(
+        "/conversations",
+        {
+            ...conversationData
+        },
+        {
+          headers: {
+            useCredentials: true,
+            "Content-Type": "application/json",
+          },
+        }
+    );
+
+    if (response.status !== 201) {
       let errorMsg = "Failed to save conversation";
       try {
-        const error = await response.json();
+        const error = await response.data;
         errorMsg = error?.error || errorMsg;
       } catch {}
       throw new Error(errorMsg);
     }
 
-    const result = await response.json();
+    const result = await response.data;
     return { success: true, id: result.dialogue_id || result.id };
   } catch (error) {
     console.error("Network or API error:", error);

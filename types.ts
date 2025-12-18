@@ -76,6 +76,7 @@ export interface ConversationData {
   lastName?: string;
   phone?: string;
   participantType?: "single" | "family" | "couple";
+  user?: string
 }
 
 export interface ContactInfo {

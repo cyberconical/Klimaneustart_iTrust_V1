@@ -10,6 +10,7 @@ import {
   Paper,
   Alert,
   Collapse,
+  Snackbar,
 } from "@mui/material";
 import {
   Person as PersonIcon,
@@ -20,6 +21,8 @@ import {
 import { useLanguage } from "./LanguageContext";
 
 import { COLORS } from "../constants";
+import axios from "./authentication/axios";
+import { useAuthStore } from "./authentication/authStore.tsx";
 
 interface LoginProps {
   onLoginSuccess: () => void;
@@ -27,54 +30,78 @@ interface LoginProps {
 let AppLogo = "/icons/logo_actual_square.png";
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const { t } = useLanguage();
 
-  const DUMMY_USERNAME = "Klimaneustart";
-  const DUMMY_PASSWORD = "Berlin2030";
+    const setAccessToken = useAuthStore((state) => state.setAccessToken);
+    const setStoreUsername = useAuthStore((state) => state.setUsername);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
+    const [errorToastMessage, setErrorToastMessage] = useState("");
+    const [showErrorToast, setShowErrorToast] = useState(false);
+    const { t } = useLanguage();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (username === DUMMY_USERNAME && password === DUMMY_PASSWORD) {
-      onLoginSuccess();
-    } else {
-      setError("Invalid username or password.");
-    }
-  };
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStoreUsername(username);
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-    if (error) {
-      setError("");
-    }
-  };
+        try {
+            const response = await axios.post(
+                "/users/login",
+                { username, password},
+                {
+                    headers: {
+                        withCredentials: true,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    if (error) {
-      setError("");
-    }
-  };
+            if (response.status === 200) {
+                const { accessToken } = response.data;
+                setAccessToken(accessToken);
+                onLoginSuccess();
+            } else {
+                const errorData = await response.data;
+                throw new Error(errorData.message || 'Login failed');
+            }
+        } catch (error) {
+            setError(error.response.data.message);
+            setErrorToastMessage(t('login.failed'));
+            setShowErrorToast(true);
+        }
+    };
 
-  const customTextFieldStyles = {
-    "& .MuiFilledInput-root": {
-      backgroundColor: COLORS.white2,
-      "&:hover": {
-        backgroundColor: COLORS.white3,
-      },
-      "&.Mui-focused": {
-        backgroundColor: COLORS.white2,
-        borderColor: COLORS.brown2,
-        boxShadow: `0 0 0 2px ${COLORS.brown2}`,
-      },
-    },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: COLORS.brown2,
-    },
-  };
+    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value);
+        if (error) {
+          setError("");
+        }
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+        if (error) {
+        setError("");
+        }
+    };
+
+    const customTextFieldStyles = {
+        "& .MuiFilledInput-root": {
+            backgroundColor: COLORS.white2,
+            "&:hover": {
+                backgroundColor: COLORS.white3,
+            },
+            "&.Mui-focused": {
+                backgroundColor: COLORS.white2,
+                borderColor: COLORS.brown2,
+                boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+            },
+        },
+        "& .MuiInputLabel-root.Mui-focused": {
+            color: COLORS.brown2,
+        },
+    };
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -288,6 +315,13 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               {t('login.loginButton')}
             </Button>
           </Box>
+          <Snackbar
+            open={showErrorToast}
+            autoHideDuration={4000}
+            onClose={() => setShowErrorToast(false)}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            message={errorToastMessage}
+          />
         </Box>
       </Grid>
     </Grid>

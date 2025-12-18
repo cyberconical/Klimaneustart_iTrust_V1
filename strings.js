@@ -28,7 +28,8 @@ export default {
             "pleaseSignIn": "Bitte melde dich an, um fortzufahren.",
             "username": "Benutzername",
             "password": "Passwort",
-            "loginButton": "Login"
+            "loginButton": "Login",
+            "failed": "Benutzername oder Passwort ungültig"
         },
         "districts": {
             "selectDistrict": "Bezirk auswählen",
@@ -258,7 +259,9 @@ export default {
             "single": "Einzelperson",
             "family": "Familie",
             "couple": "Paar",
-            "location": "Standort"
+            "location": "Standort",
+            "people": "Person(en)",
+            "minutes": "Minuten"
         },
         "summary": {
             "summary": "Zusammenfassung",
@@ -345,7 +348,8 @@ export default {
             "pleaseSignIn": "Please sign in to continue.",
             "username": "Username",
             "password": "Password",
-            "loginButton": "Login"
+            "loginButton": "Login",
+            "failed": "Invalid username or password"
         },
         "districts": {
             "selectDistrict": "Select District",
@@ -575,13 +579,15 @@ export default {
             "single": "Single",
             "family": "Family",
             "couple": "Couple",
-            "location": "Location"
+            "location": "Location",
+            "people": "person(s)",
+            "minutes": "minutes"
         },
         "summary": {
             "summary": "Summary",
             "ourQRCode": "Our QR Code",
             "note": "Note",
-            "notProvided": "Not provided"
+            "notProvided": "Not provided",
         },
         "analytics": {
             "analyticsDashboard": "Analytics Dashboard",

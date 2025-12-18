@@ -28,6 +28,7 @@ const ConversationSchema = new mongoose.Schema(
         numPeople: { type: Number, default: 1 },
         duration: { type: Number, default: 10 },
         location: { type: String },
+        user: { type: String },
 
         // Reference to separate PII document (GDPR: data minimization and separation)
         piiRef: { type: mongoose.Schema.Types.ObjectId, ref: 'PIIContact', index: true, default: null }
