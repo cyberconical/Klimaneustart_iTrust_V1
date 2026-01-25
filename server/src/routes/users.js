@@ -101,4 +101,13 @@ router.post("/refresh", (req, res) => {
     });
 });
 
+router.post('/logout', (req, res) => {
+    const refreshToken = req.cookies.jwt;
+    if (refreshToken) {
+        refreshTokens = refreshTokens.filter(token => token !== refreshToken);
+        res.clearCookie('jwt', { path: '/api/v1' });
+    }
+    res.status(200).json({ message: 'Logout successful' });
+});
+
 export default router;

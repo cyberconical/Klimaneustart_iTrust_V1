@@ -26,10 +26,6 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
         justifyContent: "center",
       }}
     >
-      <IconButton sx={{ position: "absolute", top: 16, right: 16 }}>
-        <InfoOutlinedIcon />
-      </IconButton>
-
       <Box
         component="img"
         src={logo}

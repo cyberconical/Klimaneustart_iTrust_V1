@@ -17,7 +17,6 @@ const LanguageToggle: React.FC = () => {
   return (
     <Box
       sx={{
-        position: 'fixed',
         top: 16,
         right: 16,
         zIndex: 1100,
