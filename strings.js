@@ -5,6 +5,7 @@ export default {
             "headerTitle": "Besprochen...",
             "headerSubtitle": "Dokumentiere die Essenz deines Dialogs",
             "categoriesTitle": "Themenauswahl",
+            "category": "Themen",
             "categoriesSubtitle": "Wähle alle Themen, die im Dialog\nerwähnt wurden",
             "initiativeMatching": "Selbst aktiv werden",
             "selectInterests": "Entdecke konkrete Möglichkeiten, etwas zu verändern",
@@ -14,7 +15,9 @@ export default {
             "back": "Zurück",
             "next": "Weiter",
             "continue": "Weiter",
-            "newDialogue": "Neuer Dialog"
+            "dialogue": "Gespräch am ",
+            "newDialogue": "Neuer Dialog",
+            "myDialogues": "Meine Dialoge"
         },
         "welcome": {
             "title": "Sag doch mal, Berlin!",
@@ -32,6 +35,7 @@ export default {
             "failed": "Benutzername oder Passwort ungültig"
         },
         "districts": {
+            "district": "Bezirk",
             "selectDistrict": "Bezirk auswählen",
             "residenceTitle": "Wohnort",
             "residenceSubTitle": "Wo wohnt dein:e Gesprächspartner:in?",
@@ -334,7 +338,9 @@ export default {
             "back": "Back",
             "next": "Next",
             "continue": "Continue",
-            "newDialogue": "New Dialogue"
+            "newDialogue": "New Dialogue",
+            "dialogue": "Dialogue",
+            "myDialogues": "My Dialogues"
         },
         "welcome": {
             "title": "Yo, speak up, Berlin!",
@@ -352,6 +358,7 @@ export default {
             "failed": "Invalid username or password"
         },
         "districts": {
+            "district": "District",
             "selectDistrict": "Select District",
             "residenceTitle": "Residence",
             "residenceSubTitle": "Where does your dialogue partner live?",

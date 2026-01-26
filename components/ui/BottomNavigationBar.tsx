@@ -5,10 +5,11 @@ import { useLanguage } from "../LanguageContext";
 
 let editNotes = "/icons/note_in_folder_icon.png";
 let piechartIcon = "/icons/pie_chart_icon.png";
+let listIcon = "/icons/list.png";
 
 interface BottomNavigationBarProps {
-  currentView: "dialogue" | "dashboard";
-  onTabChange: (view: "dialogue" | "dashboard") => void;
+  currentView: "dialogue" | "dashboard" | "myDialogues";
+  onTabChange: (view: "dialogue" | "dashboard" | "myDialogues") => void;
 }
 
 const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
@@ -18,7 +19,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
   const { t } = useLanguage();
   const handleChange = (
     event: React.SyntheticEvent,
-    newValue: "dialogue" | "dashboard"
+    newValue: "dialogue" | "dashboard" | "myDialogues"
   ) => {
     onTabChange(newValue);
   };
@@ -40,6 +41,13 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           icon={<img src={editNotes} width={24} height={24}></img>}
           color={currentView === "dialogue" ? '#0c328a' : undefined }
           sx={currentView === "dialogue" && { background: COLORS.grey2, border:"3px solid #0c328a", borderRadius: "4px" }}
+        />
+        <BottomNavigationAction
+            label={t("dialogue.myDialogues")}
+            value="myDialogues"
+            icon={<img src={listIcon} width={24} height={24}></img>}
+            color={currentView === "myDialogues" ? '#0c328a' : undefined }
+            sx={currentView === "myDialogues" && { background: COLORS.grey2, border:"3px solid #0c328a", borderRadius: "4px" }}
         />
         <BottomNavigationAction
           label={t("analytics.analyticsDashboard")}
