@@ -8,15 +8,13 @@ import {
   ListItemText,
   Button,
   Alert,
-  FormControlLabel,
-  Checkbox,
   IconButton,
   ListItemSecondaryAction,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import EditIcon from "@mui/icons-material/Edit";
 import { AppProps, StepId } from "../../types";
-import {INITIATIVES, STEPS, TOPIC_DEFINITIONS} from "../../constants";
+import {INITIATIVES, TOPIC_DEFINITIONS} from "../../constants";
 import { saveConversation } from "../../services/conversationService";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -245,7 +243,7 @@ const Step6Summary: React.FC<AppProps> = ({
           />
           <SummaryItem
             label={t("metrics.duration")}
-            value={`${data.numPeople} people, ${data.duration} minutes`}
+            value={`${data.numPeople} ${t("metrics.people")}, ${data.duration} ${t("metrics.minutes")}`}
             editable
             onEdit={() => handleEdit(StepId.Metrics)}
           />

@@ -21,6 +21,14 @@ Server listens on `http://localhost:${PORT}` (default 4000).
 
 ### API
 
+- POST `/api/v1/users/register`
+  - Creates a new user.
+  - Response: `{ username }`
+
+- POST `/api/v1/users/login`
+  - Creates an user session.
+  - Response: `{ userId, sessionToken }`
+
 - POST `/api/v1/conversations`
   - Body: Conversation content from the frontend. If `shareContact` is true and user is not anonymous, optional PII fields (`firstName`, `lastName`, `contactInfo` as email, `phone`) are stored encrypted in `PIIContact` collection, linked by reference.
   - Response: `{ id, dialogue_id }`

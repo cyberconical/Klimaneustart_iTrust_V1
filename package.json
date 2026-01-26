@@ -16,10 +16,17 @@
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
     "@railway/cli": "^4.6.1",
+    "@reduxjs/toolkit": "^2.11.2",
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.1.19"
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "styled-components": "^6.1.19",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@types/react": "^18.2.79",

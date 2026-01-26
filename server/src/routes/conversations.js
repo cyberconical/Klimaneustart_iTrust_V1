@@ -3,6 +3,7 @@ import Joi from 'joi';
 import Conversation from '../models/Conversation.js';
 import PIIContact from '../models/PIIContact.js';
 import { encrypt, hash } from '../utils/crypto.js';
+import { authenticateAccessToken } from "../utils/token.js";
 
 const router = Router();
 
@@ -26,17 +27,18 @@ const conversationSchema = Joi.object({
     numPeople: Joi.number().integer().min(0).default(1),
     duration: Joi.number().integer().min(0).default(10),
     location: Joi.string().allow(''),
+    user: Joi.string().allow(''),
 
     // optional richer PII fields if sent by frontend
     firstName: Joi.string().allow(''),
     lastName: Joi.string().allow(''),
     phone: Joi.string().allow(''),
     participantType: Joi.string().allow(''),
-    sendCopy: Joi.boolean().optional()
+    sendCopy: Joi.boolean().optional(),
 });
 
 // Create conversation
-router.post('/', async (req, res, next) => {
+router.post('/', authenticateAccessToken, async (req, res, next) => {
     try {
         const { value, error } = conversationSchema.validate(req.body, { stripUnknown: true });
         if (error) {
@@ -96,7 +98,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Get conversation content (without PII)
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', authenticateAccessToken, async (req, res, next) => {
     try {
         // Support both ObjectId and UUID lookup
         const id = req.params.id;
@@ -112,7 +114,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // GDPR: Erase PII by conversation ID
-router.delete('/:id/pii', async (req, res, next) => {
+router.delete('/:id/pii', authenticateAccessToken, async (req, res, next) => {
     try {
         const convo = await Conversation.findById(req.params.id);
         if (!convo) return res.status(404).json({ error: 'Not found' });
@@ -128,7 +130,7 @@ router.delete('/:id/pii', async (req, res, next) => {
 });
 
 // GDPR: Anonymize conversation content on request
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', authenticateAccessToken, async (req, res, next) => {
     try {
         const convo = await Conversation.findById(req.params.id);
         if (!convo) return res.status(404).json({ error: 'Not found' });

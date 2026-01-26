@@ -38,15 +38,15 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           label={t("dialogue.newDialogue")}
           value="dialogue"
           icon={<img src={editNotes} width={24} height={24}></img>}
-          color={currentView === "dialogue" && '#0c328a' }
+          color={currentView === "dialogue" ? '#0c328a' : undefined }
           sx={currentView === "dialogue" && { background: COLORS.grey2, border:"3px solid #0c328a", borderRadius: "4px" }}
         />
         <BottomNavigationAction
           label={t("analytics.analyticsDashboard")}
           value="dashboard"
           icon={<img src={piechartIcon} width={24} height={24}></img>}
-          color={currentView === "dashboard" && '#0c328a' }
-          sx={currentView === "dashboard" && { background: COLORS.grey2, border:"3px solid #0c328a",borderRadius: "4px"  }}
+          color={currentView === "dashboard" ? '#0c328a' : undefined }
+          sx={currentView === "dashboard" ? { background: COLORS.grey2, border: "3px solid #0c328a", borderRadius: "4px" } : undefined}
         />
       </BottomNavigation>
     </Paper>
