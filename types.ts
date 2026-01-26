@@ -79,6 +79,7 @@ export interface ConversationData {
   user?: string
 }
 
+
 export interface ContactInfo {
   firstName: string;
   lastName: string;
@@ -119,6 +120,19 @@ export interface InterestArea {
   nameKey: string;
   descriptionKey: string;
   icon: React.ElementType;
+}
+
+export interface AnalyticsData {
+  totalDialogues: number;
+  totalParticipants: number;
+  avgDuration: number;
+  dialoguesByDistrict: { name: string; value: number }[];
+  topTopics: { name: string; value: number }[];
+  topInterestAreas: { name: string; value: number }[];
+  initiativeEngagement: {
+    recommended: number;
+    selected: number;
+  };
 }
 
 // Kept for compatibility, but the manual back handling logic is mostly managed within components now.
