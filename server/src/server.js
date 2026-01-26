@@ -15,7 +15,7 @@ const app = express();
 app.use(helmet());
 app.use(
     cors({
-        origin: process.env.VITE_API_BASE_URL ? process.env.VITE_API_BASE_URL : '*',
+        origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN : 'https://www.sag-doch-mal.berlin/',
         credentials: true,
     })
 );
