@@ -4,6 +4,7 @@ import Conversation from '../models/Conversation.js';
 import PIIContact from '../models/PIIContact.js';
 import { encrypt, hash } from '../utils/crypto.js';
 import { authenticateAccessToken } from "../utils/token.js";
+import {getAnalyticsData} from "../controllers/analytics.js";
 
 const router = Router();
 
@@ -137,6 +138,22 @@ router.delete('/:id', authenticateAccessToken, async (req, res, next) => {
         if (convo.piiRef) await PIIContact.findByIdAndDelete(convo.piiRef);
         await Conversation.findByIdAndDelete(req.params.id);
         res.json({ ok: true });
+    } catch (e) {
+        next(e);
+    }
+});
+
+// Get analytics dashboard data
+router.post('/analytics', authenticateAccessToken, async (req, res, next) => {
+    try {
+        const conversations = await Conversation.find();
+        if (!conversations || conversations.length === 0) {
+            return res.status(204).json({error: 'No conversations found'});
+        }
+
+        const dashboardData = getAnalyticsData(conversations);
+
+        res.json(dashboardData);
     } catch (e) {
         next(e);
     }
