@@ -5,7 +5,6 @@ export default {
             "headerTitle": "Besprochen...",
             "headerSubtitle": "Dokumentiere die Essenz deines Dialogs",
             "categoriesTitle": "Themenauswahl",
-            "category": "Themen",
             "categoriesSubtitle": "Wähle alle Themen, die im Dialog\nerwähnt wurden",
             "initiativeMatching": "Selbst aktiv werden",
             "selectInterests": "Entdecke konkrete Möglichkeiten, etwas zu verändern",
@@ -15,7 +14,7 @@ export default {
             "back": "Zurück",
             "next": "Weiter",
             "continue": "Weiter",
-            "dialogue": "Gespräch am ",
+            "dialogueAt": "Gespräch am",
             "newDialogue": "Neuer Dialog",
             "myDialogues": "Meine Dialoge"
         },
@@ -259,7 +258,8 @@ export default {
             "dialogue": "Dialog",
             "generalInformation": "Allgemeine Infos",
             "dialoguePartners": "Dialogpartner:innen",
-            "duration": "Dauer (Min.)",
+            "persons": "Personen",
+            "duration": "Dauer",
             "single": "Einzelperson",
             "family": "Familie",
             "couple": "Paar",
@@ -339,7 +339,7 @@ export default {
             "next": "Next",
             "continue": "Continue",
             "newDialogue": "New Dialogue",
-            "dialogue": "Dialogue",
+            "dialogueAt": "Dialogue at",
             "myDialogues": "My Dialogues"
         },
         "welcome": {
@@ -582,6 +582,7 @@ export default {
             "dialogue": "Dialogue",
             "generalInformation": "General Information",
             "dialoguePartners": "Dialogue Partners",
+            "persons": "persons",
             "duration": "Duration (min)",
             "single": "Single",
             "family": "Family",

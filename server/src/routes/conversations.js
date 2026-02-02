@@ -98,9 +98,13 @@ router.post('/', authenticateAccessToken, async (req, res, next) => {
 });
 
 // Get all conversations for a specific user
-router.get('/:username', authenticateAccessToken, async (req, res, next) => {
+router.get('/user/:username', authenticateAccessToken, async (req, res, next) => {
     try {
         const { username } = req.params;
+
+        if (req.user.username !== username) {
+            return res.status(403).json({ error: 'Forbidden' });
+        }
 
         const conversations = await Conversation.find({ user: username })
             .select('-piiRef') // Exclude PII-reference

@@ -36,6 +36,7 @@ const ConversationSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+ConversationSchema.index({ user: 1, createdAt: -1 });
 ConversationSchema.index({ createdAt: -1 });
 
 export default mongoose.model('Conversation', ConversationSchema);
