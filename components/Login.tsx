@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Grid,
-  Typography,
-  TextField,
-  Button,
-  IconButton,
-  InputAdornment,
-  Paper,
-  Alert,
-  Collapse,
-  Snackbar,
+    Box,
+    Grid,
+    Typography,
+    TextField,
+    Button,
+    IconButton,
+    InputAdornment,
+    Paper,
+    Alert,
+    Collapse,
+    Snackbar, CircularProgress,
 } from "@mui/material";
 import {
   Person as PersonIcon,
@@ -36,6 +36,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [errorToastMessage, setErrorToastMessage] = useState("");
     const [showErrorToast, setShowErrorToast] = useState(false);
@@ -44,6 +45,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setStoreUsername(username);
+        setLoading(true);
 
         try {
             const response = await axios.post(
@@ -69,6 +71,8 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             setError(error.response.data.message);
             setErrorToastMessage(t('login.failed'));
             setShowErrorToast(true);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -309,11 +313,17 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               fullWidth
               variant="contained"
               color="primary"
-              style={{ backgroundColor: COLORS.green3 }}
+              style={{ backgroundColor: loading ? "#bdbdbd" : COLORS.green3 }}
               sx={{ mt: 3, mb: 2, py: 1.5 }}
+              disabled={loading}
             >
               {t('login.loginButton')}
             </Button>
+              {loading && (
+                  <Box display="flex" justifyContent="center" alignItems="center" sx={{ width: "100%", mt: 2 }}>
+                      <CircularProgress />
+                  </Box>
+              )}
           </Box>
           <Snackbar
             open={showErrorToast}

@@ -195,6 +195,12 @@ const Step6Summary: React.FC<AppProps> = ({
       <Paper variant="outlined">
         <List dense>
           <SummaryItem
+              label={t("dialogue.notesLabel")}
+              value={data.notes}
+              editable
+              onEdit={() => handleEdit(StepId.Core)}
+          />
+          <SummaryItem
             label={t("districts.selectDistrict")}
             value={data.districts.join(", ")}
             editable
@@ -219,13 +225,13 @@ const Step6Summary: React.FC<AppProps> = ({
           />
           <SummaryItem
             label={t("consent.stayAnonymous")}
-            value={data.isAnonymous ? "Yes" : "No"}
+            value={data.isAnonymous ? t("consent.yes") : t("consent.no")}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
           <SummaryItem
             label={t("consent.shareContact")}
-            value={data.shareContact ? `Yes (${data.contactInfo})` : "No"}
+            value={data.shareContact ? `${t("consent.yes")} (${data.contactInfo})` : t("consent.no")}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
