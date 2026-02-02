@@ -230,6 +230,8 @@ export default {
             }
         },
         "consent": {
+            "yes": "Ja",
+            "no": "Nein",
             "dataConsent": "Dateneinwilligung",
             "stayInTouch": "In Kontakt bleiben",
             "stayUpToDate": "Bleib auf dem Laufenden – verbinde dich mit Initiativen",
@@ -550,6 +552,8 @@ export default {
             }
         },
         "consent": {
+            "yes": "Yes",
+            "no": "No",
             "dataConsent": "Data Consent",
             "stayInTouch": "Stay In touch",
             "stayUpToDate": "Stay up to date – connect with initiatives",
