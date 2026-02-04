@@ -36,10 +36,8 @@ const MyDialogues: React.FC = () => {
         setConversations(response.data);
       } catch (err: any) {
         setError(
-          err?.response?.data?.error ||
-            err?.response?.data?.message ||
-            err?.message ||
-            "Error loading dialogues"
+            err?.response?.data?.message === "No conversations found for this user" ? t("dialogues.noDialogues") :
+                (err?.response?.data?.error || err?.response?.data?.message || err?.message || "Error loading dialogues")
         );
       } finally {
         setLoading(false);

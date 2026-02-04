@@ -16,7 +16,8 @@ export default {
             "continue": "Weiter",
             "dialogueAt": "Gespräch am",
             "newDialogue": "Neuer Dialog",
-            "myDialogues": "Meine Dialoge"
+            "myDialogues": "Meine Dialoge",
+            "noDialogues": "Für den Benutzer wurden keine Gespräche gefunden."
         },
         "welcome": {
             "title": "Sag doch mal, Berlin!",
@@ -342,7 +343,8 @@ export default {
             "continue": "Continue",
             "newDialogue": "New Dialogue",
             "dialogueAt": "Dialogue at",
-            "myDialogues": "My Dialogues"
+            "myDialogues": "My Dialogues",
+            "noDialogues": "No dialogues found for the user."
         },
         "welcome": {
             "title": "Yo, speak up, Berlin!",
