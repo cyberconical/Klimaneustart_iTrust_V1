@@ -77,6 +77,8 @@ export interface ConversationData {
   phone?: string;
   participantType?: "single" | "family" | "couple";
   user?: string
+
+  createdAt?: string;
 }
 
 

@@ -14,7 +14,9 @@ export default {
             "back": "Zurück",
             "next": "Weiter",
             "continue": "Weiter",
-            "newDialogue": "Neuer Dialog"
+            "dialogueAt": "Gespräch am",
+            "newDialogue": "Neuer Dialog",
+            "myDialogues": "Meine Dialoge"
         },
         "welcome": {
             "title": "Sag doch mal, Berlin!",
@@ -32,6 +34,7 @@ export default {
             "failed": "Benutzername oder Passwort ungültig"
         },
         "districts": {
+            "district": "Bezirk",
             "selectDistrict": "Bezirk auswählen",
             "residenceTitle": "Wohnort",
             "residenceSubTitle": "Wo wohnt dein:e Gesprächspartner:in?",
@@ -257,7 +260,8 @@ export default {
             "dialogue": "Dialog",
             "generalInformation": "Allgemeine Infos",
             "dialoguePartners": "Dialogpartner:innen",
-            "duration": "Dauer (Min.)",
+            "persons": "Personen",
+            "duration": "Dauer",
             "single": "Einzelperson",
             "family": "Familie",
             "couple": "Paar",
@@ -336,7 +340,9 @@ export default {
             "back": "Back",
             "next": "Next",
             "continue": "Continue",
-            "newDialogue": "New Dialogue"
+            "newDialogue": "New Dialogue",
+            "dialogueAt": "Dialogue at",
+            "myDialogues": "My Dialogues"
         },
         "welcome": {
             "title": "Yo, speak up, Berlin!",
@@ -354,6 +360,7 @@ export default {
             "failed": "Invalid username or password"
         },
         "districts": {
+            "district": "District",
             "selectDistrict": "Select District",
             "residenceTitle": "Residence",
             "residenceSubTitle": "Where does your dialogue partner live?",
@@ -579,6 +586,7 @@ export default {
             "dialogue": "Dialogue",
             "generalInformation": "General Information",
             "dialoguePartners": "Dialogue Partners",
+            "persons": "persons",
             "duration": "Duration (min)",
             "single": "Single",
             "family": "Family",

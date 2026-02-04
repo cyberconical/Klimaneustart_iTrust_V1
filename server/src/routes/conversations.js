@@ -98,6 +98,31 @@ router.post('/', authenticateAccessToken, async (req, res, next) => {
     }
 });
 
+// Get all conversations for a specific user
+router.get('/user/:username', authenticateAccessToken, async (req, res, next) => {
+    try {
+        const { username } = req.params;
+
+        if (req.user.username !== username) {
+            return res.status(403).json({ error: 'Forbidden' });
+        }
+
+        const conversations = await Conversation.find({ user: username })
+            .select('-piiRef') // Exclude PII-reference
+            .sort({ createdAt: -1 })
+            .lean();
+
+        if (!conversations || conversations.length === 0) {
+            return res.status(404).json({ error: 'No conversations found for this user' });
+        }
+
+        res.json(conversations);
+    } catch (e) {
+        next(e);
+    }
+});
+
+
 // Get conversation content (without PII)
 router.get('/:id', authenticateAccessToken, async (req, res, next) => {
     try {
