@@ -13,7 +13,6 @@ import Step3Initiatives from "./steps/Step3Initiatives";
 import Step4Consent from "./steps/Step4Consent";
 import Step5Reflection from "./steps/Step5Reflection";
 import Step5Metrics from "./steps/Step5Metrics";
-import Step5District from "./steps/Step5Districts";
 import Step6Summary from "./steps/Step6Summary";
 import ThankYou from "./steps/ThankYou";
 
@@ -93,8 +92,6 @@ const MainApp: React.FC = () => {
         return <Step5Reflection {...commonProps} />;
       case StepId.Metrics:
         return <Step5Metrics {...commonProps} />;
-      case StepId.reflectionDistrict:
-        return <Step5District {...commonProps} />;
       case StepId.Summary:
         return <Step6Summary {...commonProps} onNext={handleNext} />;
       case StepId.ThankYou:
