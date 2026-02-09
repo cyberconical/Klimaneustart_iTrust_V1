@@ -72,7 +72,12 @@ export default {
             "homeownership": "Wohneigentum",
             "heat": "Hitze",
             "heavyRain": "Starkregen",
-            "trees": "Bäume"
+            "trees": "Bäume",
+            "consumption": "Konsum",
+            "disposableAndPackaging": "Einweg/Verpackung",
+            "food": "Lebensmittel",
+            "recyclingAndRepair": "Recycling & Reparatur",
+            "littering": "Vermüllung"
         },
         "initiatives": {
             "initiatives": "Initiativen",
@@ -399,7 +404,12 @@ export default {
             "homeownership": "Home Ownership",
             "heat": "Heat",
             "heavyRain": "Heavy Rain",
-            "trees": "Trees"
+            "trees": "Trees",
+            "consumption": "Consumption",
+            "disposableAndPackaging": "Disposable & Packaging",
+            "food": "Food",
+            "recyclingAndRepair": "Recycling & Repair",
+            "littering": "Littering"
         },
         "initiatives": {
             "initiatives": "Initiatives",
