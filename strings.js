@@ -277,7 +277,7 @@ export default {
             "notProvided": "Keine Angaben"
         },
         "analytics": {
-            "analyticsDashboard": "Analyse-Dashboard",
+            "analyticsDashboard": "Dashboard",
             "totalDialogues": "Gesamtanzahl Dialoge",
             "totalParticipants": "Gesamtanzahl Teilnehmende",
             "avgDuration": "Durchschn. Dauer (Min.)",
@@ -604,7 +604,7 @@ export default {
             "notProvided": "Not provided",
         },
         "analytics": {
-            "analyticsDashboard": "Analytics Dashboard",
+            "analyticsDashboard": "Dashboard",
             "totalDialogues": "Total Dialogues",
             "totalParticipants": "Total Participants",
             "avgDuration": "Avg. Duration (min)",

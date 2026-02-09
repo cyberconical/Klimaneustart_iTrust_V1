@@ -46,6 +46,16 @@ const MyDialogues: React.FC = () => {
     fetchConversations();
   }, [username]);
 
+  // Helper function to render multiline text with line breaks
+  const renderMultilineText = (text: string) => {
+    return text.split('\n').map((line, idx) => (
+        <React.Fragment key={idx}>
+          {line}
+          {idx < text.split('\n').length - 1 && <br />}
+        </React.Fragment>
+    ));
+  }
+
 const renderTopicDetails = (conv: ConversationData) => {
   const allEntries: Array<[string, any]> = [];
   Object.entries(conv.topicDetails ?? {}).forEach(([topicId, details]) => {
@@ -79,7 +89,7 @@ const renderTopicDetails = (conv: ConversationData) => {
                   secondary={
                     <>
                       {details.customNote && (
-                          <Typography>{details.customNote}</Typography>
+                          <Typography>{renderMultilineText(details.customNote)}</Typography>
                       )}
                       {Object.entries(details)
                           .filter(([key]) => key !== "customNote")
@@ -97,7 +107,9 @@ const renderTopicDetails = (conv: ConversationData) => {
                                 )}
                                 {subGroupDetails.customNote && (
                                     <Typography variant="body2" color="text.secondary">
-                                      {t("summary.note")}: {subGroupDetails.customNote}
+                                      {t("summary.note")}:
+                                      <br />
+                                      {renderMultilineText(subGroupDetails.customNote)}
                                     </Typography>
                                 )}
                               </Box>
@@ -140,7 +152,7 @@ const renderTopicDetails = (conv: ConversationData) => {
         <Paper>
 
           <List>
-            {conversations.map((conv, idx) => (
+            {conversations.map((conv) => (
                 <React.Fragment key={conv.uuid}>
                   <ListItem divider={true}>
                     <ListItemText
@@ -165,14 +177,18 @@ const renderTopicDetails = (conv: ConversationData) => {
                                 <Box fontWeight="bold">{t("metrics.duration")}:</Box>
                                 <Box>{conv.duration || '-'} {t("metrics.minutes")}</Box>
                               </Grid>
-                              <Grid item xs={12}>
-                                <Box fontWeight="bold">{t("dialogue.notesLabel")}:</Box>
-                                <Box>{conv.notes || '-'}</Box>
-                              </Grid>
-                              <Grid item xs={12}>
-                                <Box fontWeight="bold">{t("reflection.observerReflection")}:</Box>
-                                <Box>{conv.observerReflection || '-'}</Box>
-                              </Grid>
+                              {conv.notes && (
+                                <Grid item xs={12}>
+                                  <Box fontWeight="bold">{t("dialogue.notesLabel")}:</Box>
+                                  <Box>{renderMultilineText(conv.notes)}</Box>
+                                </Grid>
+                              )}
+                              {conv.observerReflection && (
+                                <Grid item xs={12}>
+                                  <Box fontWeight="bold">{t("reflection.observerReflection")}:</Box>
+                                  <Box>{renderMultilineText(conv.observerReflection)}</Box>
+                                </Grid>
+                              )}
                               <Grid item xs={12}>
                                 {renderTopicDetails(conv)}
                               </Grid>
