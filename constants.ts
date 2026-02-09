@@ -22,6 +22,7 @@ import GavelIcon from "@mui/icons-material/Gavel";
 import PeopleIcon from "@mui/icons-material/People";
 import DevicesIcon from "@mui/icons-material/Devices";
 import { red } from "@mui/material/colors";
+import {ShoppingCart} from "@mui/icons-material";
 
 export const STEPS: Step[] = [
   { id: StepId.Welcome, title: "Willkommen" },
@@ -159,6 +160,23 @@ export const TOPIC_DEFINITIONS: Topic[] = [
           { id: "heat", nameKey: "topics.heat" },
           { id: "heavy_rain", nameKey: "topics.heavyRain" },
           { id: "trees", nameKey: "topics.trees" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "konsum",
+    nameKey: "topics.consumption",
+    icon: ShoppingCart,
+    subGroups: [
+      {
+        id: "consumption",
+        nameKey: "topics.consumption",
+        options: [
+          { id: "disposableAndPackaging", nameKey: "topics.disposableAndPackaging" },
+          { id: "food", nameKey: "topics.food" },
+          { id: "recyclingAndRepair", nameKey: "topics.recyclingAndRepair" },
+          { id: "littering", nameKey: "topics.littering" },
         ],
       },
     ],
