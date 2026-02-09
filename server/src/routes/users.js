@@ -14,31 +14,6 @@ const userSchema = Joi.object({
 
 let refreshTokens = [];
 
-// Register user
-router.post('/register', async (req, res, next) => {
-
-    const { value, error } = userSchema.validate(req.body, { stripUnknown: true });
-    if (error) {
-        return res.status(400).json({ error: error.message });
-    }
-
-    const { username, password } = value;
-
-    const userExists = await User.findOne( {username});
-    if (userExists){
-        res.status(400)
-        return res.status(400).json({ error: "User already exists"});
-    }
-
-    const user = await User.create( {username, password});
-    if (user) {
-        res.status(201).json( {username})
-    } else {
-        res.status(400);
-        throw new Error("User could not be created");
-    }
-});
-
 // Get users
 router.post('/login', async (req, res, next) => {
     try {
