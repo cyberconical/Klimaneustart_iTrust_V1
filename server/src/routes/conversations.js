@@ -98,16 +98,21 @@ router.post('/', authenticateAccessToken, async (req, res, next) => {
     }
 });
 
-// Get all conversations for a specific user
+// Get all conversations for a specific user (admins can retrieve all conversations)
 router.get('/user/:username', authenticateAccessToken, async (req, res, next) => {
     try {
         const { username } = req.params;
+        const isAdmin = req.user.isAdmin === true;
 
-        if (req.user.username !== username) {
+        // Non-admin users can only access their own conversations
+        if (!isAdmin && req.user.username !== username) {
             return res.status(403).json({ error: 'Forbidden' });
         }
 
-        const conversations = await Conversation.find({ user: username })
+        // Admins get all conversations; regular users only get their own
+        const filter = isAdmin ? {} : { user: username };
+
+        const conversations = await Conversation.find(filter)
             .select('-piiRef') // Exclude PII-reference
             .sort({ createdAt: -1 })
             .lean();

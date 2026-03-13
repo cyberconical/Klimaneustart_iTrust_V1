@@ -45,7 +45,7 @@ router.post('/login', async (req, res, next) => {
 
             refreshTokens.push(refreshToken);
 
-            return res.json({ username, accessToken });
+            return res.json({ username, isAdmin: user.isAdmin, accessToken });
         } else {
             res.status(401).json({ error: 'Invalid username or password' });
         }
@@ -55,7 +55,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 // Renew access token and refresh token
-router.post("/refresh", (req, res) => {
+router.post("/refresh", async (req, res) => {
     const refreshToken = req.cookies.jwt;
     const { username } = req.body;
 
@@ -63,16 +63,24 @@ router.post("/refresh", (req, res) => {
         return res.status(403).json({ message: "Your token is not correct" });
     }
 
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err) => {
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
         if (err) {
             return res
                 .status(403)
                 .json({ message: "Your session has expired. Please log in again." });
         }
 
-        // Generate new access token
-        const accessToken = generateAccessToken(username);
-        return res.json({ accessToken });
+        // Re-query the database to get the current role, so that privilege
+        // changes (e.g. admin demotion) take effect immediately.
+        const user = await User.findOne({ username: decoded.username }).select('username isAdmin').lean();
+        if (!user) {
+            return res.status(403).json({ message: "User no longer exists." });
+        }
+
+        // Generate new access token (only contains username; isAdmin is
+        // resolved from the DB on every authenticated request)
+        const accessToken = generateAccessToken(user.username);
+        return res.json({ accessToken, isAdmin: user.isAdmin === true });
     });
 });
 
