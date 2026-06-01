@@ -19,7 +19,6 @@ const conversationSchema = Joi.object({
     districts: Joi.array().items(Joi.string()).default([]),
     selectedInitiatives: Joi.array().items(Joi.string()).default([]),
     interestAreas: Joi.array().items(Joi.string()).default([]),
-    interestDistricts: Joi.array().items(Joi.string()).default([]),
     shareContact: Joi.boolean().default(false),
     contactInfo: Joi.string().email().allow(''), // legacy single email field
     isAnonymous: Joi.boolean().default(true),

@@ -20,7 +20,6 @@ const ConversationSchema = new mongoose.Schema(
         districts: { type: [String], default: [] },
         selectedInitiatives: { type: [String], default: [] },
         interestAreas: { type: [String], default: [] },
-        interestDistricts: { type: [String], default: [] },
         isAnonymous: { type: Boolean, default: true },
         shareContact: { type: Boolean, default: false },
         observerReflection: { type: String, default: '' },

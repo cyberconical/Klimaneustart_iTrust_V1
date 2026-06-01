@@ -33,7 +33,6 @@ export const STEPS: Step[] = [
   { id: StepId.Consent, title: "In Kontakt bleiben" },
   { id: StepId.Reflection, title: "Reflexion" },
   { id: StepId.Metrics, title: "Gesprächspartner:innen" },
-  { id: StepId.reflectionDistrict, title: "Select Reflection Districts" },
   { id: StepId.Summary, title: "Zusammenfassung" },
   { id: StepId.ThankYou, title: "Danke." },
 ];
@@ -46,7 +45,6 @@ export const INITIAL_CONVERSATION_DATA: ConversationData = {
   districts: [],
   selectedInitiatives: [],
   interestAreas: [],
-  interestDistricts: [],
   shareContact: false,
   contactInfo: "",
   isAnonymous: true,

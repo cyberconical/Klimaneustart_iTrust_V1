@@ -9,7 +9,6 @@ export enum StepId {
   Consent = "consent",
   Reflection = "reflection",
   Metrics = "metrics",
-  reflectionDistrict = "reflectionDistrict",
   Summary = "summary",
   ThankYou = "thankyou",
 }
@@ -59,7 +58,6 @@ export interface ConversationData {
   districts: string[];
   selectedInitiatives: string[];
   interestAreas: string[];
-  interestDistricts: string[];
   shareContact: boolean;
   contactInfo: string;
   isAnonymous: boolean;

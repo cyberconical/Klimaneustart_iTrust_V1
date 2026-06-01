@@ -3,7 +3,7 @@ export default {
         "dialogue": {
             "stepLabel": "Schritt {{current}} von {{total}}",
             "headerTitle": "Besprochen...",
-            "headerSubtitle": "Dokumentiere die Essenz deines Dialogs",
+            "headerSubtitle": "Dokumentiere Notizen zu deinem Gespräch",
             "categoriesTitle": "Themenauswahl",
             "categoriesSubtitle": "Wähle alle Themen, die im Dialog\nerwähnt wurden",
             "initiativeMatching": "Selbst aktiv werden",
@@ -335,7 +335,7 @@ export default {
         "dialogue": {
             "stepLabel": "Step {{current}} of {{total}}",
             "headerTitle": "Discussed",
-            "headerSubtitle": "Document the essence of your dialogue",
+            "headerSubtitle": "Take notes on your conversation",
             "categoriesTitle": "Category selection",
             "categoriesSubtitle": "Select all topics that were mentioned in the dialogue",
             "initiativeMatching": "Become active yourself",
