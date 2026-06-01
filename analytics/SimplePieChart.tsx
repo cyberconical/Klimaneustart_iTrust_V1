@@ -10,9 +10,11 @@ const COLORS = ['#2196F3', '#4CAF50', '#FF9800', '#F44336', '#9C27B0', '#00BCD4'
 
 const SimplePieChart: React.FC<PieChartProps> = ({ title, data }) => {
     const total = data.reduce((sum, item) => sum + item.value, 0);
-    
+
+    const sortedData = [...data].sort((a, b) => b.value - a.value);
+
     let cumulativePercentage = 0;
-    const segments = data.map((item, index) => {
+    const segments = sortedData.map((item, index) => {
         const percentage = (item.value / total) * 100;
         const startAngle = cumulativePercentage * 3.6; // Convert to degrees
         const endAngle = (cumulativePercentage + percentage) * 3.6;

@@ -3,11 +3,11 @@ const getAnalyticsData = (conversations) => {
 
     dashboardData.totalDialogues = conversations.length;
     dashboardData.avgDuration = getAvgDuration(conversations);
+    dashboardData.totalMinutes = conversations.reduce((sum, convo) => sum + (convo.duration || 0), 0);
     dashboardData.totalParticipants = conversations.reduce((sum, convo) => sum + (convo.numPeople || 1), 0);
     dashboardData.dialoguesByDistrict = getDialoguesByDistricts(conversations);
     dashboardData.topTopics = getTopTopics(conversations);
     dashboardData.topInterestAreas = [];
-    dashboardData.initiativeEngagement = { recommended: 0, selected: 0 };
 
     return dashboardData;
 };

@@ -126,13 +126,10 @@ export interface AnalyticsData {
   totalDialogues: number;
   totalParticipants: number;
   avgDuration: number;
+  totalMinutes: number;
   dialoguesByDistrict: { name: string; value: number }[];
   topTopics: { name: string; value: number }[];
   topInterestAreas: { name: string; value: number }[];
-  initiativeEngagement: {
-    recommended: number;
-    selected: number;
-  };
 }
 
 // Kept for compatibility, but the manual back handling logic is mostly managed within components now.
