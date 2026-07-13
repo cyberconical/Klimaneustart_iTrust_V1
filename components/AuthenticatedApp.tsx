@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Container } from "@mui/material";
 import MainApp from "./MainApp";
 import AnalyticsDashboard from "../analytics/AnalyticsDashboard";
@@ -6,13 +6,16 @@ import BottomNavigationBar from "./ui/BottomNavigationBar";
 import { useStepNavigation } from "../hooks/hooks";
 import { StepId, STEPS } from "../constants";
 import MyDialogues from "./pages/MyDialogues.tsx";
+import AdminUsers from "./pages/AdminUsers.tsx";
+import { AppView, useViewStore } from "./viewStore.tsx";
 
 const AuthenticatedApp: React.FC = () => {
-  const [view, setView] = useState<"dialogue" | "dashboard" | "myDialogues">("dialogue");
+  const view = useViewStore((state) => state.view);
+  const setView = useViewStore((state) => state.setView);
   const { restart, currentStep } = useStepNavigation();
 
-  const handleViewChange = (newView: "dialogue" | "dashboard" | "myDialogues") => {
-    if (newView === "dialogue" && view === "dashboard" || newView === "dialogue" && view === "myDialogues") {
+  const handleViewChange = (newView: AppView) => {
+    if (newView === "dialogue" && (view === "dashboard" || view === "myDialogues")) {
       // When switching from dashboard to start a new dialogue, reset the survey state
       restart();
     }
@@ -30,6 +33,7 @@ const AuthenticatedApp: React.FC = () => {
         {view === "dialogue" && <MainApp />}
         {view === "dashboard" && <AnalyticsDashboard />}
         {view === "myDialogues" && <MyDialogues />}
+        {view === "adminUsers" && <AdminUsers onBack={() => handleViewChange("dialogue")} />}
       </Container>
       {shouldShowBottomNavigationBar && (
         <BottomNavigationBar

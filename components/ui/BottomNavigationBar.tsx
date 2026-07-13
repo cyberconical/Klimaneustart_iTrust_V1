@@ -2,14 +2,15 @@ import * as React from "react";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { COLORS } from "../../constants";
 import { useLanguage } from "../LanguageContext";
+import { AppView } from "../viewStore.tsx";
 
 let editNotes = "/icons/note_in_folder_icon.png";
 let piechartIcon = "/icons/pie_chart_icon.png";
 let listIcon = "/icons/list.png";
 
 interface BottomNavigationBarProps {
-  currentView: "dialogue" | "dashboard" | "myDialogues";
-  onTabChange: (view: "dialogue" | "dashboard" | "myDialogues") => void;
+  currentView: AppView;
+  onTabChange: (view: AppView) => void;
 }
 
 const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
@@ -19,7 +20,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
   const { t } = useLanguage();
   const handleChange = (
     event: React.SyntheticEvent,
-    newValue: "dialogue" | "dashboard" | "myDialogues"
+    newValue: AppView
   ) => {
     onTabChange(newValue);
   };

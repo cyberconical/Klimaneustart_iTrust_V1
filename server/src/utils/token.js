@@ -52,4 +52,13 @@ const authenticateAccessToken = async (req, res, next) => {
     }
 };
 
-export { generateAccessToken, generateRefreshToken, authenticateAccessToken, MAX_AGE_REFRESH_TOKEN };
+// Requires an authenticated admin. Must run after authenticateAccessToken,
+// which resolves req.user.isAdmin from the database.
+const requireAdmin = (req, res, next) => {
+    if (!req.user || req.user.isAdmin !== true) {
+        return res.status(403).json({ message: 'Forbidden - admin access required' });
+    }
+    next();
+};
+
+export { generateAccessToken, generateRefreshToken, authenticateAccessToken, requireAdmin, MAX_AGE_REFRESH_TOKEN };

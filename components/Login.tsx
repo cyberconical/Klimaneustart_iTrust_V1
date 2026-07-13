@@ -33,6 +33,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 
     const setAccessToken = useAuthStore((state) => state.setAccessToken);
     const setStoreUsername = useAuthStore((state) => state.setUsername);
+    const setIsAdmin = useAuthStore((state) => state.setIsAdmin);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -60,8 +61,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             );
 
             if (response.status === 200) {
-                const { accessToken } = response.data;
+                const { accessToken, isAdmin } = response.data;
                 setAccessToken(accessToken);
+                setIsAdmin(!!isAdmin);
                 onLoginSuccess();
             } else {
                 const errorData = await response.data;
