@@ -6,10 +6,15 @@ import React, { useState } from "react";
 import LanguageToggle from "./LanguageToggle.tsx";
 import axios from "../authentication/axios.tsx";
 import { useAuthStore } from "../authentication/authStore.tsx";
+import { useViewStore } from "../viewStore.tsx";
+import { useLanguage } from "../LanguageContext";
 
 const AppMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const isAdmin = useAuthStore((state) => state.isAdmin);
+    const setView = useViewStore((state) => state.setView);
+    const { t } = useLanguage();
 
     const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -61,6 +66,12 @@ const AppMenu: React.FC = () => {
                 <MenuItem>
                     <LanguageToggle />
                 </MenuItem>
+                {isAdmin && (
+                    <MenuItem
+                        onClick={() => { setView("adminUsers"); handleMenuClose(); }}>
+                        {t('admin.manageUsers')}
+                    </MenuItem>
+                )}
                 <MenuItem
                     onClick={() => { handleLogout(); handleMenuClose();}}>
                     Logout

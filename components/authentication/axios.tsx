@@ -40,6 +40,7 @@ axiosInstance.interceptors.response.use(
                     { withCredentials: true }
                 );
                 useAuthStore.getState().setAccessToken(data.accessToken);
+                useAuthStore.getState().setIsAdmin(!!data.isAdmin);
                 axios.defaults.headers.common["Authorization"] = `Bearer ${data.accessToken}`;
 
                 return axiosInstance(originalRequest);

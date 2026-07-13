@@ -34,6 +34,22 @@ export default {
             "loginButton": "Login",
             "failed": "Benutzername oder Passwort ungültig"
         },
+        "admin": {
+            "manageUsers": "Benutzer verwalten",
+            "title": "Benutzerverwaltung",
+            "back": "Zurück",
+            "createUser": "Neuen Benutzer anlegen",
+            "username": "Benutzername",
+            "password": "Passwort",
+            "passwordHint": "Mindestens 8 Zeichen",
+            "isAdmin": "Administrator",
+            "adminBadge": "Admin",
+            "createButton": "Benutzer anlegen",
+            "createSuccess": "Benutzer erfolgreich angelegt",
+            "createError": "Benutzer konnte nicht angelegt werden",
+            "existingUsers": "Vorhandene Benutzer",
+            "loadError": "Benutzer konnten nicht geladen werden"
+        },
         "districts": {
             "district": "Bezirk",
             "selectDistrict": "Bezirk auswählen",
@@ -361,6 +377,22 @@ export default {
             "password": "Password",
             "loginButton": "Login",
             "failed": "Invalid username or password"
+        },
+        "admin": {
+            "manageUsers": "Manage users",
+            "title": "User management",
+            "back": "Back",
+            "createUser": "Create new user",
+            "username": "Username",
+            "password": "Password",
+            "passwordHint": "At least 8 characters",
+            "isAdmin": "Administrator",
+            "adminBadge": "Admin",
+            "createButton": "Create user",
+            "createSuccess": "User created successfully",
+            "createError": "User could not be created",
+            "existingUsers": "Existing users",
+            "loadError": "Could not load users"
         },
         "districts": {
             "district": "District",

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Joi from 'joi';
 import User from '../models/User.js';
 import jwt from "jsonwebtoken";
-import {generateAccessToken, generateRefreshToken, MAX_AGE_REFRESH_TOKEN} from "../utils/token.js";
+import {generateAccessToken, generateRefreshToken, authenticateAccessToken, requireAdmin, MAX_AGE_REFRESH_TOKEN} from "../utils/token.js";
 
 const router = Router();
 
@@ -10,6 +10,13 @@ const router = Router();
 const userSchema = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required(),
+});
+
+// Admins may create users with an optional admin flag and a minimum password length.
+const createUserSchema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().min(8).required(),
+    isAdmin: Joi.boolean().default(false),
 });
 
 let refreshTokens = [];
@@ -91,6 +98,39 @@ router.post('/logout', (req, res) => {
         res.clearCookie('jwt', { path: '/api/v1' });
     }
     res.status(200).json({ message: 'Logout successful' });
+});
+
+// Admin: create a new user
+router.post('/', authenticateAccessToken, requireAdmin, async (req, res, next) => {
+    try {
+        const { value, error } = createUserSchema.validate(req.body, { stripUnknown: true });
+        if (error) {
+            return res.status(400).json({ error: error.message });
+        }
+
+        const { username, password, isAdmin } = value;
+
+        const userExists = await User.findOne({ username });
+        if (userExists) {
+            return res.status(409).json({ error: 'User already exists' });
+        }
+
+        // The pre('save') hook hashes the password, so do not hash it here.
+        const user = await User.create({ username, password, isAdmin });
+        return res.status(201).json({ username: user.username, isAdmin: user.isAdmin });
+    } catch (e) {
+        next(e);
+    }
+});
+
+// Admin: list all users (never expose password hashes)
+router.get('/', authenticateAccessToken, requireAdmin, async (req, res, next) => {
+    try {
+        const users = await User.find({}, 'username isAdmin createdAt').sort({ username: 1 });
+        return res.json(users);
+    } catch (e) {
+        next(e);
+    }
 });
 
 export default router;
