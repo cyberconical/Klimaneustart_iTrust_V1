@@ -1,6 +1,6 @@
 # Klimaneustart — Civic Dialogue Web App
 
-Short: A full‑stack web app to collect civic dialogue input for urban/climate planning in Berlin. Frontend is a React + TypeScript app (Vite + MUI + styled‑components). Backend (in `server/`) is an Express API that stores dialogues and handles GDPR‑aware PII separation.
+Short: A full‑stack web app to collect civic dialogue input for urban/climate planning in Berlin. Frontend is a React + TypeScript app (Vite + MUI + styled‑components). Backend (in `server/`) is an Express API that stores dialogues. No personally identifiable contact information is collected.
 
 ---
 
@@ -30,7 +30,7 @@ Short: A full‑stack web app to collect civic dialogue input for urban/climate 
 
 ## Folder structure (high level)
 - /src — frontend source (components, pages, services)
-  - /components/steps — step flow UIs (Welcome, Topics, Initiatives, Consent, Metrics, Summary, ThankYou)
+  - /components/steps — step flow UIs (Welcome, Topics, Initiatives, Metrics, Summary, ThankYou)
   - /components/ui — shared UI components (BottomNavigationBar, NavigationButton, etc.)
   - /services — API service wrappers (e.g., conversationService)
   - index.css — global fonts & CSS variables
@@ -39,7 +39,7 @@ Short: A full‑stack web app to collect civic dialogue input for urban/climate 
   - types.ts — shared TypeScript types
 - /public — static assets (icons, fonts)
 - /server — Express backend (separate repo area)
-  - server/src/models — Mongoose models (Conversation, PIIContact)
+  - server/src/models — Mongoose models (Conversation, User)
   - server/src/routes — API routes (conversations)
   - server/README.md — server run & API details
 
@@ -71,7 +71,7 @@ Run backend (from `server/`):
    npm run dev
    ```
 
-See [server/README.md](server/README.md) for detailed API and GDPR notes.
+See [server/README.md](server/README.md) for detailed API notes.
 
 ---
 
@@ -87,10 +87,9 @@ Always keep credentials out of source control.
 
 ## API (brief)
 Primary ingestion endpoint (server):
-- `POST /api/v1/conversations` — create/update conversation. If `shareContact` true and PII provided, PII is stored encrypted in separate collection and linked by reference.
-- `GET /api/v1/conversations/:id` — returns conversation without PII.
-- `DELETE /api/v1/conversations/:id/pii` — erase PII for a conversation.
-- `DELETE /api/v1/conversations/:id` — delete conversation and linked PII.
+- `POST /api/v1/conversations` — create/update conversation.
+- `GET /api/v1/conversations/:id` — returns conversation content.
+- `DELETE /api/v1/conversations/:id` — delete conversation.
 
 See [server/README.md](server/README.md) and [server/src/routes/conversations.js](server/src/routes/conversations.js) for implementation.
 
@@ -100,7 +99,7 @@ See [server/README.md](server/README.md) and [server/src/routes/conversations.js
 - i18n: `strings.js` + `LanguageContext` — all UI text uses translation keys.
 - Fonts: custom fonts loaded via `@font-face` in `index.css`; MUI theme should be configured to use them for MUI components.
 - Icons: app mixes MUI SVG icons and static image icons (`public/icons/`) — components detect string path vs. component and render `<img>` or MUI icon accordingly.
-- GDPR: PII (contact info) is stored separately and encrypted. Server has endpoints to delete PII.
+- Privacy: no personally identifiable contact information is collected or stored.
 - QR codes: `qrcode.react` generates scannable thumbnails in the initiatives list and full modal view.
 - Centralized navigation styling: `components/ui/NavigationButton.tsx` (single source for Back/Next button styles) — replace repetitive styled definitions across steps.
 
@@ -122,7 +121,7 @@ See [server/README.md](server/README.md) and [server/src/routes/conversations.js
 
 ## Migration notes (MongoDB → PostgreSQL)
 - The project currently uses Mongoose models and MongoDB. Migration will require:
-  - Designing relational schema (conversations, pii_contacts, initiatives, topics, users).
+  - Designing relational schema (conversations, initiatives, topics, users).
   - Rewriting models (Sequelize / Knex) and queries in `server/src/routes`.
   - Updating environment variables (`DATABASE_URL`) and connection logic.
 - See `db and tables.md` for a drafted schema.

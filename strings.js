@@ -254,22 +254,6 @@ export default {
                 "description": "Kultur- und Nachbarschaftszentrum in Reinickendorf mit Repair Café für Integration und Nachhaltigkeit."
             }
         },
-        "consent": {
-            "yes": "Ja",
-            "no": "Nein",
-            "dataConsent": "Dateneinwilligung",
-            "stayInTouch": "In Kontakt bleiben",
-            "stayUpToDate": "Bleib auf dem Laufenden – verbinde dich mit Initiativen",
-            "shareContact": "Kontakt teilen",
-            "whichContactDetails": "Welche Kontaktdaten möchtest du teilen?",
-            "firstName": "Vorname",
-            "lastName": "Nachname",
-            "telephone": "Telefon",
-            "stayAnonymous": "Anonym bleiben",
-            "privacyProtected": "Ort, Dauer und Anzahl der Teilnehmenden werden gespeichert, alle weiteren Angaben nur mit ausdrücklicher Zustimmung.(DSGVO konform)",
-            "confidentialInfo": "Mit deiner Kopie erhälst du auch Informationen zu Initiativen, die für dich von Interesse sein können.",
-            "organizationQRCode": "Organisation QR Code"
-        },
         "reflection": {
             "observerReflection": "Beobachter-Reflexion",
             "yourReflection": "Deine Reflexion",
@@ -597,22 +581,6 @@ export default {
                 "name": "Repair Café im BBK-Linde",
                 "description": "A cultural and community center in Reinickendorf that hosts a Repair Café to foster integration and sustainable habits."
             }
-        },
-        "consent": {
-            "yes": "Yes",
-            "no": "No",
-            "dataConsent": "Data Consent",
-            "stayInTouch": "Stay In touch",
-            "stayUpToDate": "Stay up to date – connect with initiatives",
-            "shareContact": "Share Contact",
-            "whichContactDetails": "Which contact details would you like to share?",
-            "firstName": "First Name",
-            "lastName": "Last Name",
-            "telephone": "Telephone",
-            "stayAnonymous": "Stay Anonymous",
-            "privacyProtected": "The location, duration and number of participants will be saved, all further information only with express consent. (GDPR compliant)",
-            "confidentialInfo": "With a copy of your response, you will also receive information about initiatives that may be of interest to you.",
-            "organizationQRCode": "Organization QR Code"
         },
         "reflection": {
             "observerReflection": "Observer Reflection",

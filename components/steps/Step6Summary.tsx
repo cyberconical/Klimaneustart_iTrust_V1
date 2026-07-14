@@ -224,18 +224,6 @@ const Step6Summary: React.FC<AppProps> = ({
             onEdit={() => handleEdit(StepId.Initiatives)}
           />
           <SummaryItem
-            label={t("consent.stayAnonymous")}
-            value={data.isAnonymous ? t("consent.yes") : t("consent.no")}
-            editable
-            onEdit={() => handleEdit(StepId.Consent)}
-          />
-          <SummaryItem
-            label={t("consent.shareContact")}
-            value={data.shareContact ? `${t("consent.yes")} (${data.contactInfo})` : t("consent.no")}
-            editable
-            onEdit={() => handleEdit(StepId.Consent)}
-          />
-          <SummaryItem
             label={t("reflection.resonanceEssence")}
             value={data.observerReflection}
             editable

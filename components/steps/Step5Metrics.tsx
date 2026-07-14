@@ -17,8 +17,6 @@ import { COLORS } from "../../constants";
 import styled from "styled-components";
 import { useLanguage } from "../LanguageContext";
 
-type ParticipantType = "single" | "family" | "couple";
-
 const StyledButton = styled(Button)`
   background-color: ${COLORS.primary_background};
   color: ${COLORS.heading};
@@ -66,10 +64,6 @@ const Step5Metrics: React.FC<AppProps> = ({
   onBack,
 }) => {
   const { t } = useLanguage();
-  const handleParticipantTypeChange = (type: ParticipantType) => {
-    // Enforce single selection like a radio group
-    updateData({ participantType: type });
-  };
 
   const [numPeopleValue, setNumPeopleValue] = useState(
     data.numPeople?.toString() || "1"

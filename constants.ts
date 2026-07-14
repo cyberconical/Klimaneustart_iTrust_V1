@@ -6,7 +6,6 @@ import {
   Initiative,
   InterestArea,
   DeineReflection,
-  ContactInfo,
 } from "./types";
 
 import HouseIcon from "@mui/icons-material/House";
@@ -30,7 +29,6 @@ export const STEPS: Step[] = [
   { id: StepId.District, title: "Bezirk auswählen" },
   { id: StepId.Topics, title: "Kategorien" },
   { id: StepId.Initiatives, title: "Initiativen" },
-  { id: StepId.Consent, title: "In Kontakt bleiben" },
   { id: StepId.Reflection, title: "Reflexion" },
   { id: StepId.Metrics, title: "Gesprächspartner:innen" },
   { id: StepId.Summary, title: "Zusammenfassung" },
@@ -45,20 +43,10 @@ export const INITIAL_CONVERSATION_DATA: ConversationData = {
   districts: [],
   selectedInitiatives: [],
   interestAreas: [],
-  shareContact: false,
-  contactInfo: "",
-  isAnonymous: true,
   observerReflection: "",
   surprise: "",
   numPeople: 1,
   duration: 10,
-};
-
-export const CONTACT_INFO: ContactInfo = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  telephone: "",
 };
 
 export const DEINE_REFLECTION: DeineReflection = {

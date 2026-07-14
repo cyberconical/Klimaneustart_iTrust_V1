@@ -85,9 +85,6 @@ Represents the full JSON payload sent from the frontend when saving a dialogue.
   },
   "districts": ["Pankow", "Mitte"],
   "interestAreas": ["Urban Garden"],
-  "shareContact": false,
-  "contactInfo": "",
-  "isAnonymous": true,
   "observerReflection": "...",
   "surprise": "...",
   "numPeople": 2,
@@ -184,7 +181,6 @@ Endpoints to create new records in the database.
 - Insert data into appropriate tables:
 
   - `dialogues`
-  - Conditional insert into `participant_contact`
   - Link tables: `dialogue_districts`, `dialogue_interest_areas`, `dialogue_topic_selections`
 
 **Request Body**: Matches the `DialogueSubmission` schema.

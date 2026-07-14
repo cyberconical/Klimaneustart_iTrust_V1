@@ -20,17 +20,12 @@ const ConversationSchema = new mongoose.Schema(
         districts: { type: [String], default: [] },
         selectedInitiatives: { type: [String], default: [] },
         interestAreas: { type: [String], default: [] },
-        isAnonymous: { type: Boolean, default: true },
-        shareContact: { type: Boolean, default: false },
         observerReflection: { type: String, default: '' },
         surprise: { type: String, default: '' },
         numPeople: { type: Number, default: 1 },
         duration: { type: Number, default: 10 },
         location: { type: String },
-        user: { type: String },
-
-        // Reference to separate PII document (GDPR: data minimization and separation)
-        piiRef: { type: mongoose.Schema.Types.ObjectId, ref: 'PIIContact', index: true, default: null }
+        user: { type: String }
     },
     { timestamps: true }
 );

@@ -6,7 +6,6 @@ export enum StepId {
   District = "district",
   Topics = "topics",
   Initiatives = "initiatives",
-  Consent = "consent",
   Reflection = "reflection",
   Metrics = "metrics",
   Summary = "summary",
@@ -58,34 +57,16 @@ export interface ConversationData {
   districts: string[];
   selectedInitiatives: string[];
   interestAreas: string[];
-  shareContact: boolean;
-  contactInfo: string;
-  isAnonymous: boolean;
   observerReflection: string;
   surprise: string;
   numPeople: number;
   duration: number; // in minutes
   location?: string;
-  sendSummaryCopy?: boolean; // User wants a copy of the summary
-  summaryCopyEmail?: string; // Email to send the summary copy to
-
-  // Contact info
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  participantType?: "single" | "family" | "couple";
   user?: string
 
   createdAt?: string;
 }
 
-
-export interface ContactInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  telephone: string;
-}
 
 export interface DeineReflection {
   observerReflection: string;
