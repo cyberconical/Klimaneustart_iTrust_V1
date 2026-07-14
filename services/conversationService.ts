@@ -31,10 +31,6 @@ import { useAuthStore } from "../components/authentication/authStore.tsx";
 export const saveConversation = async (
     conversationData: ConversationData & {
     uuid?: string;
-    sendCopy?: boolean;
-    firstName?: string;
-    lastName?: string;
-    phone?: string;
   }
 ): Promise<{ success: boolean; id: string }> => {
   try {

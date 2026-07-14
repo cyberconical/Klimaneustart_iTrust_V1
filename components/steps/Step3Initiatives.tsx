@@ -329,8 +329,6 @@ const Step3Initiatives: React.FC<AppProps> = ({
                   selectedInitiatives: data.selectedInitiatives,
                   interestAreas: data.interestAreas,
                   districts: data.districts,
-                  isAnonymous: data.isAnonymous,
-                  shareContact: false,
                 } as any);
               } catch (e) {
                 // Non-blocking: still show QR to avoid UX dead-end

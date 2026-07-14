@@ -10,7 +10,6 @@ import Step1Core from "./steps/Step1Core";
 import Step2District from "./steps/Step2District";
 import Step2Topics from "./steps/Step2Topics";
 import Step3Initiatives from "./steps/Step3Initiatives";
-import Step4Consent from "./steps/Step4Consent";
 import Step5Reflection from "./steps/Step5Reflection";
 import Step5Metrics from "./steps/Step5Metrics";
 import Step6Summary from "./steps/Step6Summary";
@@ -86,8 +85,6 @@ const MainApp: React.FC = () => {
         return <Step2Topics {...commonProps} />;
       case StepId.Initiatives:
         return <Step3Initiatives {...commonProps} />;
-      case StepId.Consent:
-        return <Step4Consent {...commonProps} />;
       case StepId.Reflection:
         return <Step5Reflection {...commonProps} />;
       case StepId.Metrics:

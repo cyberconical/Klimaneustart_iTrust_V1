@@ -4,8 +4,7 @@ import { AppProps } from "../../types";
 import { COLORS } from "../../constants";
 import { useLanguage } from "../LanguageContext";
 
-const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
-  const initiativeCount = data.selectedInitiatives.length;
+const ThankYou: React.FC<AppProps> = ({ onRestart }) => {
   const { t } = useLanguage();
   return (
     <Box
@@ -45,28 +44,6 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           {t("thankYou.responseRecorded")}
         </Typography>
       </Paper>
-      {/* This box is only shown if the user selected initiatives and is not anonymous */}
-      {initiativeCount > 0 && !data.isAnonymous && (
-        <Paper
-          variant="outlined"
-          sx={{
-            p: 3,
-            width: "100%",
-            borderColor: "text.primary",
-            borderWidth: 1.5,
-            borderRadius: 2,
-          }}
-        >
-          <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
-            {`You're interested in ${initiativeCount} ${
-              initiativeCount === 1 ? "initiative" : "initiatives"
-            }!`}
-          </Typography>
-          <Typography variant="body1">
-            We will connect you with local opportunities soon!
-          </Typography>
-        </Paper>
-      )}
       {/* <Box sx={{ flexGrow: 1 }} /> */}
       {/* Spacer to push button to the bottom */}
       {/* Deep Dive Button */}

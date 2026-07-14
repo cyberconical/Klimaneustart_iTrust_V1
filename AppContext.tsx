@@ -1,8 +1,7 @@
 import React, { createContext, useState, useCallback, useContext } from "react";
-import { ConversationData, ContactInfo, DeineReflection } from "./types";
+import { ConversationData, DeineReflection } from "./types";
 import {
   INITIAL_CONVERSATION_DATA,
-  CONTACT_INFO,
   DEINE_REFLECTION,
   STEPS,
 } from "./constants";
@@ -10,14 +9,12 @@ import {
 interface AppContextType {
   // State
   conversation: ConversationData;
-  contactInfo: ContactInfo;
   reflection: DeineReflection;
   currentStep: number;
   step2View: "district" | "topics";
 
   // Updaters
   updateConversation: (data: Partial<ConversationData>) => void;
-  updateContactInfo: (data: Partial<ContactInfo>) => void;
   updateReflection: (data: Partial<DeineReflection>) => void;
 
   // Navigation
@@ -48,7 +45,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [conversation, setConversation] = useState<ConversationData>(
     INITIAL_CONVERSATION_DATA
   );
-  const [contactInfo, setContactInfo] = useState<ContactInfo>(CONTACT_INFO);
   const [reflection, setReflection] =
     useState<DeineReflection>(DEINE_REFLECTION);
 
@@ -70,17 +66,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     []
   );
 
-  const updateContactInfo = useCallback((newData: Partial<ContactInfo>) => {
-    setContactInfo((prev) => ({ ...prev, ...newData }));
-  }, []);
-
   const updateReflection = useCallback((newData: Partial<DeineReflection>) => {
     setReflection((prev) => ({ ...prev, ...newData }));
   }, []);
 
   const restart = useCallback(() => {
     setConversation(INITIAL_CONVERSATION_DATA);
-    setContactInfo(CONTACT_INFO);
     setReflection(DEINE_REFLECTION);
     setStep2View("district");
     setCurrentStep(0);
@@ -95,12 +86,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const contextValue: AppContextType = {
     conversation,
-    contactInfo,
     reflection,
     currentStep,
     step2View,
     updateConversation,
-    updateContactInfo,
     updateReflection,
     setStep2View,
     restart,

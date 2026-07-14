@@ -5,11 +5,6 @@ export const useConversation = () => {
   return { data: conversation, updateData: updateConversation };
 };
 
-export const useContactInfo = () => {
-  const { contactInfo, updateContactInfo } = useAppContext();
-  return { data: contactInfo, updateData: updateContactInfo };
-};
-
 export const useReflection = () => {
   const { reflection, updateReflection } = useAppContext();
   return { data: reflection, updateData: updateReflection };

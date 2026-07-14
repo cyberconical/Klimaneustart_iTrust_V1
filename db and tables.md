@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-This document outlines the database schema for the Klimaneustart application. The design is normalized to ensure data integrity, scalability for future analytics, and strict compliance with GDPR by isolating Personally Identifiable Information (PII).
+This document outlines the database schema for the Klimaneustart application. The design is normalized to ensure data integrity and scalability for future analytics. No personally identifiable contact information is collected or stored.
 
 ---
 
@@ -47,7 +47,7 @@ This document outlines the database schema for the Klimaneustart application. Th
 
 ### `dialogues`
 
-**Purpose:** The central table for each conversation session. Contains all non-PII data.
+**Purpose:** The central table for each conversation session.
 
 | Column Name           | Data Type | Constraints/Notes                        |
 | --------------------- | --------- | ---------------------------------------- |
@@ -60,20 +60,7 @@ This document outlines the database schema for the Klimaneustart application. Th
 | num_people            | INTEGER   | NOT NULL                                 |
 | duration              | INTEGER   | NOT NULL, Duration in minutes            |
 | location              | TEXT      | Optional text location (e.g., park name) |
-| is_anonymous          | BOOLEAN   | NOT NULL, Master GDPR flag               |
-| consent_share_contact | BOOLEAN   | NOT NULL, Specific consent to store PII  |
 | created_at            | TIMESTAMP | NOT NULL, Default `CURRENT_TIMESTAMP`    |
-
----
-
-### `participant_contact`
-
-**Purpose:** The PII Vault. This table is strictly isolated and should only be accessed under specific conditions. Only write to this table if `dialogues.is_anonymous` is FALSE **AND** `dialogues.consent_share_contact` is TRUE.
-
-| Column Name  | Data Type | Constraints/Notes                          |
-| ------------ | --------- | ------------------------------------------ |
-| dialogue_id  | INTEGER   | PRIMARY KEY, Foreign Key to `dialogues.id` |
-| contact_info | TEXT      | NOT NULL                                   |
 
 ---
 
