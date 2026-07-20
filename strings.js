@@ -17,7 +17,10 @@ export default {
             "dialogueAt": "Gespräch am",
             "newDialogue": "Neuer Dialog",
             "myDialogues": "Meine Dialoge",
-            "noDialogues": "Für den Benutzer wurden keine Gespräche gefunden."
+            "noDialogues": "Für den Benutzer wurden keine Gespräche gefunden.",
+            "onlyMyDialogues": "Nur meine Dialoge",
+            "exportCsv": "Als CSV exportieren",
+            "exportFailed": "CSV-Export fehlgeschlagen."
         },
         "welcome": {
             "title": "Sag doch mal, Berlin!",
@@ -345,7 +348,10 @@ export default {
             "newDialogue": "New Dialogue",
             "dialogueAt": "Dialogue at",
             "myDialogues": "My Dialogues",
-            "noDialogues": "No dialogues found for the user."
+            "noDialogues": "No dialogues found for the user.",
+            "onlyMyDialogues": "Only my dialogues",
+            "exportCsv": "Export as CSV",
+            "exportFailed": "CSV export failed."
         },
         "welcome": {
             "title": "Yo, speak up, Berlin!",

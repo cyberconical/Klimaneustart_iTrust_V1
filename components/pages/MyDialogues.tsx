@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import DownloadIcon from '@mui/icons-material/Download';
 import {
   Box,
   Typography,
@@ -9,6 +10,9 @@ import {
   Paper,
   CircularProgress,
   Alert, Grid, ListItemAvatar, Avatar,
+  Switch,
+  FormControlLabel,
+  Button,
 } from "@mui/material";
 import { useAuthStore } from "../authentication/authStore.tsx";
 import axios from "../authentication/axios";
@@ -18,11 +22,14 @@ import {TOPIC_DEFINITIONS} from "../../constants.ts";
 
 const MyDialogues: React.FC = () => {
   const username = useAuthStore((state) => state.username);
+  const isAdmin = useAuthStore((state) => state.isAdmin);
   const { t } = useLanguage();
   const language = useLanguage().language;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [exportError, setExportError] = useState<string | null>(null);
   const [conversations, setConversations] = useState<ConversationData[]>([]);
+  const [onlyMine, setOnlyMine] = useState(false);
 
   useEffect(() => {
     const fetchConversations = async () => {
@@ -31,8 +38,11 @@ const MyDialogues: React.FC = () => {
         setLoading(false);
         return;
       }
+      setLoading(true);
       try {
-        const response = await axios.get(`/conversations/user/${username}`);
+        const response = await axios.get(
+            `/conversations/user/${username}${isAdmin ? `?all=${!onlyMine}` : ''}`
+        );
         setConversations(response.data);
       } catch (err: any) {
         setError(
@@ -44,7 +54,25 @@ const MyDialogues: React.FC = () => {
       }
     };
     fetchConversations();
-  }, [username]);
+  }, [username, isAdmin, onlyMine]);
+
+  const handleExportCsv = async () => {
+    setExportError(null);
+    try {
+      const response = await axios.get('/conversations/export/csv', {
+        params: isAdmin ? { all: !onlyMine } : undefined,
+        responseType: 'blob',
+      });
+      const url = URL.createObjectURL(response.data);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'conversations-export.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      setExportError(err?.response?.data?.error || err?.message || t("dialogue.exportFailed"));
+    }
+  };
 
   // Helper function to render multiline text with line breaks
   const renderMultilineText = (text: string) => {
@@ -141,9 +169,27 @@ const renderTopicDetails = (conv: ConversationData) => {
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        {t("dialogue.myDialogues")} ({conversations.length})
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 1 }}>
+        <Typography variant="h4" gutterBottom>
+          {t("dialogue.myDialogues")} ({conversations.length})
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          {isAdmin && (
+            <FormControlLabel
+                control={<Switch checked={onlyMine} onChange={(e) => setOnlyMine(e.target.checked)} />}
+                label={t("dialogue.onlyMyDialogues")}
+            />
+          )}
+          <Button variant="outlined" startIcon={<DownloadIcon />} onClick={handleExportCsv}>
+            {t("dialogue.exportCsv")}
+          </Button>
+        </Box>
+      </Box>
+      {exportError && (
+        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setExportError(null)}>
+          {exportError}
+        </Alert>
+      )}
       {conversations.length === 0 ? (
         <Typography color="text.secondary">
           {t("dialogue.noDialoguesFound") || "Keine Dialoge gefunden."}
