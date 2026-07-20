@@ -3,6 +3,7 @@ import Joi from 'joi';
 import Conversation from '../models/Conversation.js';
 import { authenticateAccessToken } from "../utils/token.js";
 import {getAnalyticsData} from "../controllers/analytics.js";
+import { toCsv } from "../utils/csv.js";
 
 const router = Router();
 
@@ -65,8 +66,10 @@ router.get('/user/:username', authenticateAccessToken, async (req, res, next) =>
             return res.status(403).json({ error: 'Forbidden' });
         }
 
-        // Admins get all conversations; regular users only get their own
-        const filter = isAdmin ? {} : { user: username };
+        // Admins can explicitly request everyone's conversations via ?all=true;
+        // otherwise (and for non-admins always) only the requested user's own.
+        const showAll = isAdmin && req.query.all === 'true';
+        const filter = showAll ? {} : { user: username };
 
         const conversations = await Conversation.find(filter)
             .sort({ createdAt: -1 })
@@ -82,6 +85,27 @@ router.get('/user/:username', authenticateAccessToken, async (req, res, next) =>
     }
 });
 
+// Export conversations as CSV with every stored field. Non-admins always get
+// only their own conversations; admins can pass ?all=true for everyone's.
+router.get('/export/csv', authenticateAccessToken, async (req, res, next) => {
+    try {
+        const isAdmin = req.user.isAdmin === true;
+        const showAll = isAdmin && req.query.all === 'true';
+        const filter = showAll ? {} : { user: req.user.username };
+
+        const conversations = await Conversation.find(filter)
+            .sort({ createdAt: -1 })
+            .lean();
+
+        const csv = toCsv(conversations);
+
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+        res.setHeader('Content-Disposition', 'attachment; filename="conversations-export.csv"');
+        res.send('﻿' + csv);
+    } catch (e) {
+        next(e);
+    }
+});
 
 // Get conversation content (without PII)
 router.get('/:id', authenticateAccessToken, async (req, res, next) => {
